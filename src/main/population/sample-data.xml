@@ -244,7 +244,7 @@
 
 	<bean id="item04" class="acme.entities.items.Item">
 		<property name="ticker" value="AZZ-19-323456" />
-		<property name="title" value="Sample item 02" />
+		<property name="title" value="Sample item 04" />
 		<property name="itemCategory" value="Category 01" />
 		<property name="creationMoment" value="2019/04/10 12:31" />
 		<property name="descriptionText" value="This is the description" />
@@ -257,7 +257,7 @@
 
 	<bean id="item05" class="acme.entities.items.Item">
 		<property name="ticker" value="ACC-19-723456" />
-		<property name="title" value="Sample item 03" />
+		<property name="title" value="Sample item 05" />
 		<property name="itemCategory" value="Category 01" />
 		<property name="creationMoment" value="2019/01/20 14:15" />
 		<property name="descriptionText" value="This is the description" />
@@ -267,6 +267,44 @@
 		<property name="supplier" ref="supplier2Supplier" />
 
 	</bean>
+	
+	<!-- Audit record  -->
+	
+	<bean id="auditRecord01" class="acme.entities.auditRecords.AuditRecord">
+		
+		<property name="title" value="Sample audit record 01" />
+		<property name="status" value="DRAFT" />
+		<property name="creationMoment" value="2019/04/20 14:30" />
+		<property name="body" value="This is the body text" />
+		<property name="item" ref="item01" />
+		<property name="auditor" ref="auditor1Auditor" />
+
+	</bean>
+	
+	
+	<bean id="auditRecord02" class="acme.entities.auditRecords.AuditRecord">
+		
+		<property name="title" value="Sample audit record 02" />
+		<property name="status" value="DRAFT" />
+		<property name="creationMoment" value="2019/04/20 14:30" />
+		<property name="body" value="This is the body text" />
+		<property name="item" ref="item02" />
+		<property name="auditor" ref="auditor1Auditor" />
+
+	</bean>
+	
+	<bean id="auditRecord03" class="acme.entities.auditRecords.AuditRecord">
+		
+		<property name="title" value="Sample audit record 03" />
+		<property name="status" value="DRAFT" />
+		<property name="creationMoment" value="2019/04/20 14:30" />
+		<property name="body" value="This is the body text" />
+		<property name="item" ref="item03" />
+		<property name="auditor" ref="auditor2Auditor" />
+
+	</bean>
+	
+	<!-- supplier -->
 
 	<bean name="supplier1UserAccount" class="acme.framework.entities.UserAccount">
 		<property name="username" value="supplier1" />
@@ -300,6 +338,77 @@
 		<property name="userAccount" ref="supplier1UserAccount" />
 	</bean>
 	
+	
+	
+	
+	
+	
+	
+	
+	<!-- Auditor -->
+	
+	<bean name="auditor1UserAccount" class="acme.framework.entities.UserAccount">
+		<property name="username" value="auditor1" />
+		<property name="password" value="auditor1" />
+		<property name="enabled" value="true" />
+		<property name="identity">
+			<bean class="acme.datatypes.UserIdentity">
+				<property name="name" value="Auditor" />
+				<property name="surname" value="One" />
+				<property name="email" value="auditor1@acme.com" />
+			</bean>
+		</property>
+		<property name="roles">
+			<list>
+				<ref bean="auditor1Auditor" />
+				<ref bean="auditor1Authenticated" />
+			</list>
+		</property>
+	</bean>
+
+	<bean name="auditor1Auditor" class="acme.entities.roles.Auditor">
+		<property name="firmName" value="Auditor 1, Inc." />
+		<property name="responsabilityStatement" value="Responsability statement example 1" />
+		
+		<property name="userAccount" ref="auditor1UserAccount" />
+	</bean>
+
+	<bean name="auditor1Authenticated" class="acme.framework.entities.Authenticated">
+		<property name="userAccount" ref="auditor1UserAccount" />
+	</bean>
+	
+	
+	<!-- Auditor 2 -->
+	
+		<bean name="auditor2UserAccount" class="acme.framework.entities.UserAccount">
+		<property name="username" value="auditor2" />
+		<property name="password" value="auditor2" />
+		<property name="enabled" value="true" />
+		<property name="identity">
+			<bean class="acme.datatypes.UserIdentity">
+				<property name="name" value="Auditor" />
+				<property name="surname" value="Two" />
+				<property name="email" value="auditor2@acme.com" />
+			</bean>
+		</property>
+		<property name="roles">
+			<list>
+				<ref bean="auditor2Auditor" />
+				<ref bean="auditor2Authenticated" />
+			</list>
+		</property>
+	</bean>
+
+	<bean name="auditor2Auditor" class="acme.entities.roles.Auditor">
+		<property name="firmName" value="Auditor 2, Inc." />
+		<property name="responsabilityStatement" value="Responsability statement example 2" />
+		
+		<property name="userAccount" ref="auditor2UserAccount" />
+	</bean>
+
+	<bean name="auditor2Authenticated" class="acme.framework.entities.Authenticated">
+		<property name="userAccount" ref="auditor2UserAccount" />
+	</bean>
 	
 
 
@@ -454,6 +563,48 @@
 
 	<bean name="buyer1Authenticated" class="acme.framework.entities.Authenticated">
 		<property name="userAccount" ref="buyer1UserAccount" />
+	</bean>
+	
+	<!-- Forums -->
+ 	<bean id="forum01" class="acme.entities.forums.Forum">
+ 		<property name="title" value="Forum example 1"/>
+ 		<property name="users">
+ 			<list>
+ 				<ref bean="supplier1Authenticated"/>
+ 				<ref bean="buyer1Authenticated"/>
+ 			</list>
+ 		</property>
+ 		<property name="item" ref="item01"/>
+ 	</bean>
+ 	
+ 	 <bean id="forum02" class="acme.entities.forums.Forum">
+ 		<property name="title" value="Forum example 2"/>
+ 		<property name="users">
+ 			<list>
+ 				<ref bean="supplier2Authenticated"/>
+ 				<ref bean="buyer1Authenticated"/>
+ 			</list>
+ 		</property>
+ 		<property name="item" ref="item02"/>
+ 	</bean>
+ 	
+ 	<!-- Messages -->
+	<bean id="message01" class="acme.entities.messages.Message">
+	 	<property name="title" value="Message title 1"/>
+		<property name="creationMoment" value="2020/07/30 00:00"/>
+	 	<property name="tags" value="message, forum, test"/>
+	 	<property name="body" value="Body message 1"/>
+	 	<property name="forum" ref="forum01"/>
+	 	<property name="user" ref="supplier1Authenticated"/>
+	</bean>
+	
+	<bean id="message02" class="acme.entities.messages.Message">
+	 	<property name="title" value="Message title 2"/>
+		<property name="creationMoment" value="2020/07/30 01:00"/>
+	 	<property name="tags" value="example 2"/>
+	 	<property name="body" value="Body message 2"/>
+	 	<property name="forum" ref="forum01"/>
+	 	<property name="user" ref="buyer1Authenticated"/>
 	</bean>
 
 

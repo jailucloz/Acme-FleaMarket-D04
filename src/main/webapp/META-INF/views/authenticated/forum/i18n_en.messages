@@ -1,0 +1,15 @@
+
+authenticated.forum.list.label.title	= Title
+
+
+
+
+
+
+
+authenticated.forum.form.label.tags	= Tags
+authenticated.forum.form.label.creationMoment = Creation moment
+authenticated.forum.form.label.empty = The forum has no messages available
+
+
+authenticated.forum.form.button.return = Return

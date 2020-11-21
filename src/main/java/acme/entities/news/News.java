@@ -3,11 +3,14 @@ package acme.entities.news;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.URL;
 
@@ -40,9 +43,12 @@ public class News extends DomainEntity {
 
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
+	@Future
 	private Date				deadline;
 
 	@NotBlank
+	@Column(length = 1024)
+	@Size(min = 1, max = 256)
 	private String				body;
 
 	@NotBlank

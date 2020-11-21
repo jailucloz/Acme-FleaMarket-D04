@@ -31,6 +31,27 @@
         primary key (`id`)
     ) engine=InnoDB;
 
+    create table `audit_record` (
+       `id` integer not null,
+        `version` integer not null,
+        `body` varchar(255),
+        `creation_moment` datetime(6),
+        `status` varchar(255),
+        `title` varchar(255),
+        `auditor_id` integer not null,
+        `item_id` integer not null,
+        primary key (`id`)
+    ) engine=InnoDB;
+
+    create table `auditor` (
+       `id` integer not null,
+        `version` integer not null,
+        `user_account_id` integer,
+        `firm_name` varchar(255),
+        `responsability_statement` varchar(255),
+        primary key (`id`)
+    ) engine=InnoDB;
+
     create table `authenticated` (
        `id` integer not null,
         `version` integer not null,
@@ -82,6 +103,19 @@
         primary key (`id`)
     ) engine=InnoDB;
 
+    create table `forum` (
+       `id` integer not null,
+        `version` integer not null,
+        `title` varchar(255),
+        `item_id` integer not null,
+        primary key (`id`)
+    ) engine=InnoDB;
+
+    create table `forum_authenticated` (
+       `forum_id` integer not null,
+        `users_id` integer not null
+    ) engine=InnoDB;
+
     create table `item` (
        `id` integer not null,
         `version` integer not null,
@@ -118,10 +152,22 @@
         primary key (`id`)
     ) engine=InnoDB;
 
-    create table `news` (
+    create table `message` (
        `id` integer not null,
         `version` integer not null,
         `body` varchar(255),
+        `creation_moment` datetime(6),
+        `tags` varchar(255),
+        `title` varchar(255),
+        `forum_id` integer not null,
+        `user_id` integer not null,
+        primary key (`id`)
+    ) engine=InnoDB;
+
+    create table `news` (
+       `id` integer not null,
+        `version` integer not null,
+        `body` varchar(1024),
         `category` varchar(255),
         `deadline` datetime(6),
         `header_picture` varchar(255),
@@ -213,6 +259,9 @@
 
     insert into `hibernate_sequence` values ( 1 );
 
+    alter table `forum` 
+       add constraint UK_c5hjl933amnwf8mq1v2lf45jo unique (`item_id`);
+
     alter table `item` 
        add constraint UK_d60jfv0vlrqswikfeec1le23u unique (`ticker`);
 
@@ -235,6 +284,21 @@
        foreign key (`user_account_id`) 
        references `user_account` (`id`);
 
+    alter table `audit_record` 
+       add constraint `FKdcrrgv6rkfw2ruvdja56un4ji` 
+       foreign key (`auditor_id`) 
+       references `auditor` (`id`);
+
+    alter table `audit_record` 
+       add constraint `FK47tigk6nwo26xcchn2ngnlj4f` 
+       foreign key (`item_id`) 
+       references `item` (`id`);
+
+    alter table `auditor` 
+       add constraint FK_clqcq9lyspxdxcp6o4f3vkelj 
+       foreign key (`user_account_id`) 
+       references `user_account` (`id`);
+
     alter table `authenticated` 
        add constraint FK_h52w0f3wjoi68b63wv9vwon57 
        foreign key (`user_account_id`) 
@@ -250,10 +314,35 @@
        foreign key (`user_account_id`) 
        references `user_account` (`id`);
 
+    alter table `forum` 
+       add constraint `FKrgdtbakxmpiv2k47q778a77qa` 
+       foreign key (`item_id`) 
+       references `item` (`id`);
+
+    alter table `forum_authenticated` 
+       add constraint `FKbfu7rkr4imldqrkswlqieb4dv` 
+       foreign key (`users_id`) 
+       references `authenticated` (`id`);
+
+    alter table `forum_authenticated` 
+       add constraint `FKd1ebx6x0cql1bxphvu15qxh2x` 
+       foreign key (`forum_id`) 
+       references `forum` (`id`);
+
     alter table `item` 
        add constraint `FK7r7pmef5wvaepffbi0xfrso2c` 
        foreign key (`supplier_id`) 
        references `supplier` (`id`);
+
+    alter table `message` 
+       add constraint `FKfwwpivgx5j4vw4594dgrw884q` 
+       foreign key (`forum_id`) 
+       references `forum` (`id`);
+
+    alter table `message` 
+       add constraint `FKik4epe9dp5q6uenarfyia7xin` 
+       foreign key (`user_id`) 
+       references `authenticated` (`id`);
 
     alter table `provider` 
        add constraint FK_b1gwnjqm6ggy9yuiqm0o4rlmd 

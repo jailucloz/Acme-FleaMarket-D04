@@ -1,0 +1,19 @@
+
+auditor.item.list.label.title	= Título
+auditor.item.list.label.creationMoment = Momento de creación
+
+
+
+
+
+auditor.item.form.label.title	= Título
+auditor.item.form.label.ticker	= Ticker
+auditor.item.form.label.price = Precio
+auditor.item.form.label.itemCategory = Categoria del artículo
+auditor.item.form.label.descriptionText	= Texto de descripción
+auditor.item.form.label.additionalInformation	= Información adicional 
+auditor.item.form.label.creationMoment = Momento de creación
+auditor.item.form.label.photo	= Foto
+auditor.item.form.button.audit-records = Registro de auditoría
+
+auditor.item.form.button.return = Volver
