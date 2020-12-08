@@ -26,7 +26,7 @@
 	<acme:form-textbox code="auditor.item.form.label.additionalInformation" path="additionalInformation"/>
 	<acme:form-textbox code="auditor.item.form.label.photo" path="photo"/>
 	
-	
+	<input id="item" name="item" value="${item}" type="hidden" />
 	<acme:form-submit code="auditor.item.form.button.audit-records" action="/auditor/audit-record/list_mine?itemId=${itemId}" method="get"/>
 	<acme:form-return code="auditor.item.form.button.return"/>
 </acme:form>

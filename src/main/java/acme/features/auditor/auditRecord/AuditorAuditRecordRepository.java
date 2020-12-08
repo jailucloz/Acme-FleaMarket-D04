@@ -12,8 +12,11 @@ import acme.framework.repositories.AbstractRepository;
 @Repository
 public interface AuditorAuditRecordRepository extends AbstractRepository {
 
-	@Query("select ar from AuditRecord ar where ar.item.id =?1")
-	Collection<AuditRecord> findAllByItemId(int itemId);
+	@Query("select ar from AuditRecord ar where (ar.item.id =?1 and ar.auditor.id =?2)")
+	Collection<AuditRecord> findManyByItemIdAndAuditorId(int itemId, int auditorId);
+
+	@Query("select ar from AuditRecord ar where (ar.item.id =?1 and ar.auditor.id != ?2)")
+	Collection<AuditRecord> findManyByItemIdAndNotAuditorId(int itemId, int auditorId);
 
 	@Query("select ar from AuditRecord ar where ar.auditor.id =?1")
 	Collection<AuditRecord> findManyByAuditorId(int auditorId);

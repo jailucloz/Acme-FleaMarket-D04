@@ -275,7 +275,7 @@
 		<property name="title" value="Sample audit record 01" />
 		<property name="status" value="DRAFT" />
 		<property name="creationMoment" value="2019/04/20 14:30" />
-		<property name="body" value="This is the body text" />
+		<property name="body" value="This is the body text. Written by auditor1" />
 		<property name="item" ref="item01" />
 		<property name="auditor" ref="auditor1Auditor" />
 
@@ -287,7 +287,7 @@
 		<property name="title" value="Sample audit record 02" />
 		<property name="status" value="DRAFT" />
 		<property name="creationMoment" value="2019/04/20 14:30" />
-		<property name="body" value="This is the body text" />
+		<property name="body" value="This is the body text. Written by auditor1" />
 		<property name="item" ref="item02" />
 		<property name="auditor" ref="auditor1Auditor" />
 
@@ -298,7 +298,7 @@
 		<property name="title" value="Sample audit record 03" />
 		<property name="status" value="DRAFT" />
 		<property name="creationMoment" value="2019/04/20 14:30" />
-		<property name="body" value="This is the body text" />
+		<property name="body" value="This is the body text. Written by auditor2" />
 		<property name="item" ref="item03" />
 		<property name="auditor" ref="auditor2Auditor" />
 
@@ -527,7 +527,7 @@
 		<property name="creationMoment" value="2010/10/10 11:31" />
 		<property name="supplier" ref="supplier2Supplier" />
 		<property name="item" ref="item05" />
-		<property name="buyer" ref="buyer1Buyer" />
+		<property name="buyer" ref="buyer2Buyer" />
 
 	</bean>
 	
@@ -563,6 +563,42 @@
 
 	<bean name="buyer1Authenticated" class="acme.framework.entities.Authenticated">
 		<property name="userAccount" ref="buyer1UserAccount" />
+	</bean>
+	
+	
+	
+	<!-- buyer2 -->
+	
+	<bean name="buyer2UserAccount" class="acme.framework.entities.UserAccount">
+		<property name="username" value="buyer2" />
+		<property name="password" value="buyer2" />
+		<property name="enabled" value="true" />
+		<property name="identity">
+			<bean class="acme.datatypes.UserIdentity">
+				<property name="name" value="Buyer" />
+				<property name="surname" value="Two" />
+				<property name="email" value="buyer2@acme.com" />
+			</bean>
+		</property>
+		<property name="roles">
+			<list>
+				<ref bean="buyer2Buyer" />
+				<ref bean="buyer2Authenticated" />
+			</list>
+		</property>
+	</bean>
+
+	<bean name="buyer2Buyer" class="acme.entities.roles.Buyer">
+		<property name="email" value="buyer02@mail.com" />
+		<property name="phoneNumber" value="674918200" />
+		<property name="deliveryAddres" value="30 Solera Avenue, Rebujito City (Andalusia)" />
+		<property name="creditCard" value="4532269505502922" />
+
+		<property name="userAccount" ref="buyer2UserAccount" />
+	</bean>
+
+	<bean name="buyer2Authenticated" class="acme.framework.entities.Authenticated">
+		<property name="userAccount" ref="buyer2UserAccount" />
 	</bean>
 	
 	<!-- Forums -->

@@ -55,6 +55,7 @@ master.menu.authenticated.suggestion.list = Suggestions list
 master.menu.authenticated.figment.list = Figments list
 master.menu.authenticated.advertisement.list = Active advertisements list
 master.menu.authenticated.item.list = Items list
+master.menu.authenticated.forum.list = Forum list
 
 # master.menu.administrator ###################################################
 
@@ -98,6 +99,12 @@ master.menu.supplier.request.list-mine = List mine requests
 master.menu.buyer = Buyer
 master.menu.buyer.request.list-mine = List mine requests
 
+
+# master.menu.auditor ##########################################################
+
+master.menu.auditor = Auditor
+master.menu.auditor.item.list-written = List item written audit record
+master.menu.auditor.item.list-not-written = List item not written audit record
 
 
 # master.menu.user-account ####################################################

@@ -14,7 +14,7 @@ import acme.framework.entities.Principal;
 import acme.framework.services.AbstractListService;
 
 @Service
-public class AuditorAuditRecordListMineService implements AbstractListService<Auditor, AuditRecord> {
+public class AuditorAuditRecordListNotMineService implements AbstractListService<Auditor, AuditRecord> {
 
 	@Autowired
 	AuditorAuditRecordRepository repository;
@@ -42,12 +42,9 @@ public class AuditorAuditRecordListMineService implements AbstractListService<Au
 		Collection<AuditRecord> res;
 		Principal principal;
 
-		//principal = request.getPrincipal();
-		//res = this.repository.findManyByAuditorId(principal.getActiveRoleId());
-
 		int itemId = request.getModel().getInteger("itemId");
 		principal = request.getPrincipal();
-		res = this.repository.findManyByItemIdAndAuditorId(itemId, principal.getActiveRoleId());
+		res = this.repository.findManyByItemIdAndNotAuditorId(itemId, principal.getActiveRoleId());
 
 		return res;
 	}

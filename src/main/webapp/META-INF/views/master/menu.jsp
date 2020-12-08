@@ -53,6 +53,8 @@
 			<acme:menu-suboption code="master.menu.authenticated.figment.list" action="/authenticated/figment/list"/>
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.authenticated.item.list" action="/authenticated/item/list"/>
+			<acme:menu-separator/>
+			<acme:menu-suboption code="master.menu.authenticated.forum.list" action="/authenticated/forum/list"/>
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.administrator" access="hasRole('Administrator')">
@@ -103,9 +105,14 @@
 
 		<acme:menu-option code="master.menu.buyer" access="hasRole('Buyer')">
 			<acme:menu-suboption code="master.menu.buyer.request.list-mine" action="/buyer/request-item/list_mine"/>
-			
-		
 		</acme:menu-option>
+		
+		
+		<acme:menu-option code="master.menu.auditor" access="hasRole('Auditor')">
+			<acme:menu-suboption code="master.menu.auditor.item.list-written" action="/auditor/item/list_written"/>
+			<acme:menu-suboption code="master.menu.auditor.item.list-not-written" action="/auditor/item/list_not_written"/>
+		</acme:menu-option>
+		
 	</acme:menu-left>
 
 	<acme:menu-right>

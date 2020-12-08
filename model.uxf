@@ -530,7 +530,7 @@ Published by  ^</panel_attributes>
       <h>104</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
-Specification sheet
+Section
 --
 + indexer: Integer {NotNull, Positive}
 + title: String {NotBlank}

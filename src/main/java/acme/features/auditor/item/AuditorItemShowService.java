@@ -31,6 +31,12 @@ public class AuditorItemShowService implements AbstractShowService<Auditor, Item
 		assert model != null;
 		int itemId = request.getModel().getInteger("id");
 		model.setAttribute("itemId", itemId);
+
+		String uri = request.getServletRequest().getHeader("Referer");
+		if (uri.contains("list_written")) {
+			model.setAttribute("auditRecordWritten", true);
+		}
+
 		request.unbind(entity, model, "ticker", "title", "itemCategory", "creationMoment", "descriptionText", "price", "additionalInformation", "photo");
 	}
 

@@ -54,6 +54,7 @@ master.menu.authenticated.tool-advertisement.list = Lista de anuncios
 master.menu.authenticated.suggestion.list = Lista de sugerencias
 master.menu.authenticated.figment.list = Lista de productos
 master.menu.authenticated.advertisement.list = Lista de anuncios activos
+master.menu.authenticated.forum.list = Lista de foros
 
 # master.menu.administrator ###################################################
 
@@ -96,6 +97,13 @@ master.menu.supplier.request.list-mine = Lista de mis peticiones
 
 master.menu.buyer = Comprador
 master.menu.buyer.request.list-mine = Lista de mis peticiones
+
+
+# master.menu.auditor ##########################################################
+
+master.menu.auditor = Auditor
+master.menu.auditor.item.list-written = Lista de artículos con registros de autoría
+master.menu.auditor.item.list-not-written = Lista de artículos sin registros de autoría
 
 
 # master.menu.user-account ####################################################
